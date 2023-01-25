@@ -1,0 +1,9 @@
+--Show the ratio between the total correct answers of each year w.r.t the previous year.
+
+with member ratio as
+iif(([Dates].[Time].prevmember, [Measures].[Correct Ans]) = 0, null,
+[Measures].[Correct Ans] / ([Dates].[Time].prevmember, [Measures].[Correct Ans]))
+select {[Measures].[Correct Ans], ratio} on columns,
+nonempty([Dates].[Time].[Year]) on rows
+from [Group 5 DB];
+

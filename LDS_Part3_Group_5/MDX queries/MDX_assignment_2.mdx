@@ -1,0 +1,8 @@
+--Show the total confidence for each year and the running yearly for European students.
+with member run_conf as
+
+[Measures].[Confidence] + ([Dates].[Year].prevmember,run_conf)
+select {[Measures].[Confidence],run_conf} on columns,
+nonempty(([Dates].[Year].[Year])) on rows
+from [Group 5 DB]
+where [Users].[Continent].&[Europe];

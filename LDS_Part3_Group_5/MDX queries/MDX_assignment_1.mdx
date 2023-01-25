@@ -1,0 +1,12 @@
+--Show the total correct answers for each country and the grand total with respect to the continent.
+WITH MEMBER GT_continent AS ([Users].[Geography].currentmember.parent,[Measures].[Correct Ans]) 
+
+select {[Measures].[Correct Ans], GT_continent} on columns, 
+
+nonempty([Users].[Geography].[Country Name]) on rows
+from [GROUP 5 DB]
+
+
+
+
+
